@@ -1,0 +1,129 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fmodern\fcharset0 Courier-Bold;\f2\fnil\fcharset0 HelveticaNeue-Bold;
+\f3\fnil\fcharset0 Menlo-Regular;\f4\fnil\fcharset0 Menlo-Bold;\f5\fmodern\fcharset0 Courier;
+}
+{\colortbl;\red255\green255\blue255;\red29\green38\blue42;\red255\green255\blue255;\red67\green91\blue103;
+\red245\green247\blue249;}
+{\*\expandedcolortbl;;\cssrgb\c14902\c19608\c21961;\cssrgb\c100000\c100000\c100000;\cssrgb\c32941\c43137\c47843;
+\cssrgb\c96863\c97647\c98039;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww9520\viewh17700\viewkind0
+\deftab720
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\b\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Given the\'a0
+\f1\fs26 \cf4 \cb5 \strokec4 head
+\f0\fs28 \cf2 \cb3 \strokec2 \'a0of a linked\'a0list, rotate the list to the right by\'a0
+\f1\fs26 \cf4 \cb5 \strokec4 k
+\f0\fs28 \cf2 \cb3 \strokec2 \'a0places.
+\b0 \
+\'a0\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f2\b \cf2 Example 1:
+\f0\b0 \
+\pard\pardeftab720\partightenfactor0
+\cf2 {{\NeXTGraphic rotate1.jpg \width14240 \height6040 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\pard\pardeftab720\partightenfactor0
+
+\f3\fs26 \cf2 \cb5 \
+\pard\pardeftab720\partightenfactor0
+
+\f4\b \cf2 Input:
+\f3\b0  head = [1,2,3,4,5], k = 2\
+
+\f4\b Output:
+\f3\b0  [4,5,1,2,3]\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f2\b\fs28 \cf2 \cb3 Example 2:
+\f0\b0 \
+\pard\pardeftab720\partightenfactor0
+\cf2 {{\NeXTGraphic roate2.jpg \width9440 \height10840 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\pard\pardeftab720\partightenfactor0
+
+\f3\fs26 \cf2 \cb5 \
+\pard\pardeftab720\partightenfactor0
+
+\f4\b \cf2 Input:
+\f3\b0  head = [0,1,2], k = 4\
+
+\f4\b Output:
+\f3\b0  [2,0,1]\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \'a0\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f2\b \cf2 Constraints:
+\f0\b0 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The number of nodes in the list is in the range\'a0
+\f5\fs26 \cf4 \cb5 \strokec4 [0, 500]
+\f0\fs28 \cf2 \cb3 \strokec2 .\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0
+\f5\fs26 \cf4 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 -100 <= Node.val <= 100
+\f0\fs28 \cf2 \cb1 \strokec2 \
+\ls1\ilvl0
+\f5\fs26 \cf4 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 0 <= k <= 2 * 10
+\fs19\fsmilli9750 9\
+\pard\tx566\pardeftab720\partightenfactor0
+
+\f0\fs28 \cf2 \cb1 \strokec2 \
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+/**\
+ * Definition for singly-linked list.\
+ * public class ListNode \{\
+ *     int val;\
+ *     ListNode next;\
+ *     ListNode() \{\}\
+ *     ListNode(int val) \{ this.val = val; \}\
+ *     ListNode(int val, ListNode next) \{ this.val = val; this.next = next; \}\
+ * \}\
+ */\
+class Solution \{\
+    public ListNode rotateRight(ListNode head, int k) \{\
+        //return head if LL is empty or with single node\
+        if(head == null || head.next == null)\
+            return head;\
+        \
+        //calculate length\
+        int length = 1;\
+        ListNode oldTail = head;\
+        while(oldTail.next != null)\
+        \{\
+            oldTail = oldTail.next;\
+            length++;\
+        \}\
+        \
+        //calculate pivot using mod to find the newtail\
+        int pivot = 0;\
+            pivot = length - (k % length);\
+            System.out.println("pivot2 = "+pivot);\
+        //create a circular list to join the old tail to the head of the LL\
+        oldTail.next = head;\
+        \
+        // find the newTail and create newHead\
+        ListNode newTail = head;\
+        ListNode newHead;\
+        for(int i = 1; i< pivot; i++)\
+        \{\
+            newTail = newTail.next;\
+        \}\
+        newHead = newTail.next;\
+        newTail.next = null;\
+        return newHead;\
+    \}\
+\}\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+Time complexity o(n)\
+Space complexity o(1) as we have not created any new instance of nodes and using only pointers to rotate the LL\
+}
